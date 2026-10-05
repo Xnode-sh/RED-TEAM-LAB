@@ -1,0 +1,44 @@
+# Secrets and credentials
+.env*
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+auth.json
+credentials.json
+*.token
+*.secret
+cookies.txt
+cookies.json
+id_rsa*
+id_ed25519*
+.ssh/
+.aws/
+
+# Local agent configuration
+.claude/
+.codex/
+
+# Dependencies and Python caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs and local editor/OS files
+*.log
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.coverage
+htmlcov/
