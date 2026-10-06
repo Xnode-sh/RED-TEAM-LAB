@@ -6,7 +6,7 @@
 
 | Среда / дом | Сотрудник | Роль |
 | --- | --- | --- |
-| Codex Cloud / ChatGPT Work | ORBIT | Cloud Operations & Integration Engineer |
+| Codex Cloud / ChatGPT Work | ORBIT | Cloud Workspace & Integration Engineer |
 | Acer Aspire E1-570G / Debian 13 | RIG | Systems & Linux Environment Engineer |
 | Xiaomi 23053RN02Y / Termux → Ubuntu/proot → Claude Code | KAI | Mobile Field Engineer |
 | Motorola Edge 2022 / native Termux → Codex CLI | NOVA | Mobile Automation & Tooling Engineer |
@@ -16,6 +16,8 @@
 Рабочая база: GitHub repository `Xnode-sh/RED-TEAM-LAB`. Использовать фактическую директорию checkout; в этой облачной среде — `/workspace/RED-TEAM-LAB`. Путь `~/RED-TEAM-LAB` ниже относится только к локальной NOVA.
 
 Визуальные обозначения: RIG — SYSTEM; KAI — FIELD; NOVA — TOOLING; ORBIT — CLOUD / INTEGRATION. Общая актуальная архитектура: [TEAM.md](TEAM.md) и [схема](assets/team-architecture.svg).
+
+NODE — отдельный LAB COMPANION: RED └•TEAM•┐ lab™ Mascot & Visual Status Daemon, не инженерный узел и не идентичность облачного агента. Полный состав лаборатории включает четыре инженерных узла и NODE; [идентичность companion](docs/NODE.md). Актуальные дома и среды, включая версии Android и XFCE, указаны в TEAM.md; локальный раздел NOVA ниже сохранён как историческая инструкция.
 
 ## Начало сессии
 

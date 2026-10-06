@@ -20,3 +20,5 @@ PLAN → ISSUE → BRANCH → WORK → TEST → PR → REVIEW → MERGE
 ## Облачная координация и интеграция
 
 ORBIT — CLOUD / INTEGRATION: проверяет состояние общего репозитория, координирует Issues/PR и CI/CD, сверяет результаты RIG — SYSTEM, KAI — FIELD и NOVA — TOOLING. Перед интеграцией проверяет diff, границы задачи, секреты и фактические результаты проверок. Публикация ветки и создание PR не означают merge; интеграция в main выполняется после review и разрешения оператора.
+
+NODE — LAB COMPANION / visual status daemon; его состояния IDLE / WORK / BUILD / TEST / OK / ERROR / SLEEP / THINK / ALERT / HAPPY могут сопровождать отчёты, но не заменяют результаты проверок. NODE не получает инженерную ветку, не является reviewer и не выполняет merge.

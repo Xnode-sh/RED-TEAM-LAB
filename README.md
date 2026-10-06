@@ -8,18 +8,28 @@
 
 Оператор: **xnode**. GitHub: [Xnode-sh/RED-TEAM-LAB](https://github.com/Xnode-sh/RED-TEAM-LAB).
 
-## Команда
+## ENGINEERING NODES
 
-| Узел | Роль | Дом |
-| --- | --- | --- |
-| [RIG — SYSTEM](agents/RIG/ROLE.md) | Systems & Linux Environment Engineer | Acer Aspire E1-570G / Debian 13 |
-| [KAI — FIELD](agents/KAI/ROLE.md) | Mobile Field Engineer | Xiaomi 23053RN02Y / Termux → Ubuntu/proot → Claude Code |
-| [NOVA — TOOLING](agents/NOVA/ROLE.md) | Mobile Automation & Tooling Engineer | Motorola Edge 2022 / native Termux → Codex CLI |
-| [ORBIT — CLOUD / INTEGRATION](agents/ORBIT/ROLE.md) | Cloud Operations & Integration Engineer | Codex Cloud / ChatGPT Work |
+| Узел | Роль | Дом | Среда |
+| --- | --- | --- | --- |
+| [RIG — SYSTEM](agents/RIG/ROLE.md) | Systems & Linux Environment Engineer | Acer Aspire E1-570G | Debian 13 + XFCE |
+| [KAI — FIELD](agents/KAI/ROLE.md) | Mobile Field Engineer | Xiaomi 23053RN02Y | Android 15 / HyperOS 2 → Termux → Ubuntu/proot → Claude Code |
+| [NOVA — TOOLING](agents/NOVA/ROLE.md) | Mobile Automation & Tooling Engineer | Motorola Edge 2022 | Android 15 → native Termux → Codex CLI |
+| [ORBIT — CLOUD / INTEGRATION](agents/ORBIT/ROLE.md) | Cloud Workspace & Integration Engineer | Codex Cloud / ChatGPT Work | isolated cloud workspace connected to GitHub |
+
+## LAB COMPANION
+
+<img src="assets/rig-node.svg" width="120" alt="NODE — fox-cat companion and visual status daemon">
+
+**NODE — RED └•TEAM•┐ lab™ Mascot & Visual Status Daemon**. Companion лаборатории, не пятый инженер и не инженерный узел.
+
+“A tiny daemon that keeps the lab alive.”
+
+NODE отображает состояния лаборатории и проектов: `IDLE / WORK / BUILD / TEST / OK / ERROR / SLEEP / THINK / ALERT / HAPPY`. Это визуальный язык статусов; исполняемый сервис мониторинга в репозитории не реализован. [Идентичность NODE](docs/NODE.md).
 
 ## Архитектура лаборатории
 
-![Четыре узла: RIG — SYSTEM, KAI — FIELD, NOVA — TOOLING, ORBIT — CLOUD / INTEGRATION](assets/team-architecture.svg)
+![Лаборатория: четыре инженерных узла и отдельный companion NODE](assets/team-architecture.svg)
 
 Узлы работают в своих инженерных зонах и используют общий репозиторий. ORBIT координирует Issues и Pull Requests, проверяет целостность результатов и интеграцию через review. Облачная координация не меняет роли и полномочия RIG, KAI и NOVA.
 
@@ -49,4 +59,4 @@ PLAN → ISSUE → BRANCH → WORK → TEST → PR → REVIEW → MERGE
 
 `PLAN → ISSUE → BRANCH → WORK → TEST → PR → REVIEW → MERGE`
 
-Команда: **RIG / KAI / NOVA / ORBIT**. NODE — фирменный маскот. [Правила работы](https://github.com/Xnode-sh/RED-TEAM-LAB/blob/main/WORKFLOW.md).
+Инженерные узлы: **RIG / KAI / NOVA / ORBIT**. **NODE — companion / visual status daemon**. [Правила работы](https://github.com/Xnode-sh/RED-TEAM-LAB/blob/main/WORKFLOW.md).
