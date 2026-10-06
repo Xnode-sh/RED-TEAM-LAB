@@ -1,3 +1,7 @@
+<p align="center"><img src="assets/rig-banner.svg" width="1280" alt="XNODE — RED └•TEAM•┐ lab™"></p>
+
+[Штаб лаборатории](https://github.com/Xnode-sh/RED-TEAM-LAB) · [Профиль XNODE](https://github.com/Xnode-sh)
+
 # RED └•TEAM•┐ lab™
 
 Рабочий репозиторий команды XNODE для инструментов, мобильной автоматизации и системных проектов.
@@ -29,3 +33,11 @@ PLAN → ISSUE → BRANCH → WORK → TEST → PR → REVIEW → MERGE
 
 Правила: [TEAM.md](TEAM.md), [WORKFLOW.md](WORKFLOW.md), [SECURITY.md](SECURITY.md).
 Инструкции NOVA: [AGENTS.md](AGENTS.md).
+
+<img src="assets/rig-divider.svg" width="1280" alt="">
+
+## Инженерный процесс лаборатории
+
+`PLAN → ISSUE → BRANCH → WORK → TEST → PR → REVIEW → MERGE`
+
+Команда: **RIG / KAI / NOVA**. NODE — фирменный маскот. [Правила работы](https://github.com/Xnode-sh/RED-TEAM-LAB/blob/main/WORKFLOW.md).
