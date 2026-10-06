@@ -12,7 +12,7 @@ assignees: ""
 
 ## Ответственный и зона
 
-RIG / KAI / NOVA; рабочая зона и ветка `<agent>/<task>`.
+RIG / KAI / NOVA / ORBIT; рабочая зона и ветка `<agent>/<task>`.
 
 ## План
 

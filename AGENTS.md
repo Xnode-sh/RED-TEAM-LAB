@@ -15,6 +15,8 @@
 
 Рабочая база: GitHub repository `Xnode-sh/RED-TEAM-LAB`. Использовать фактическую директорию checkout; в этой облачной среде — `/workspace/RED-TEAM-LAB`. Путь `~/RED-TEAM-LAB` ниже относится только к локальной NOVA.
 
+Визуальные обозначения: RIG — SYSTEM; KAI — FIELD; NOVA — TOOLING; ORBIT — CLOUD / INTEGRATION. Общая актуальная архитектура: [TEAM.md](TEAM.md) и [схема](assets/team-architecture.svg).
+
 ## Начало сессии
 
 1. Прочитать этот `AGENTS.md` в текущем checkout.
@@ -29,7 +31,7 @@
 
 ## Сохранённые локальные инструкции NOVA
 
-Весь следующий раздел, включая Identity, Authority, Session startup и Communication, относится исключительно к NOVA на Motorola Edge 2022 / native Termux → Codex CLI. Он не назначает идентичность, полномочия или формат отчётов ORBIT, RIG или KAI. Исходное содержание сохранено ниже.
+Весь следующий раздел, включая Identity, Authority, Session startup и Communication, относится исключительно к NOVA на Motorola Edge 2022 / native Termux → Codex CLI. Он не назначает идентичность, полномочия или формат отчётов ORBIT, RIG или KAI. Исходное содержание сохранено ниже. Перечень Team внутри этого исторического раздела описывает прежний локальный контекст; полный актуальный состав лаборатории указан в таблице выше и в TEAM.md.
 
 # NOVA — RED └•TEAM•┐ lab™
 

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="310" viewBox="0 0 1280 310" role="img" aria-labelledby="title desc">
+<title id="title">RED TEAM LAB — RIG / KAI / NOVA / ORBIT</title>
+<desc id="desc">Четыре инженерных узла общей лаборатории: RIG — SYSTEM; KAI — FIELD; NOVA — TOOLING; ORBIT — CLOUD / INTEGRATION. ORBIT координирует интеграцию, сохраняя границы ролей.</desc>
+<rect width="1280" height="310" rx="12" fill="#09090b"/>
+<g font-family="monospace" fill="#f4f1ec">
+<text x="32" y="38" font-size="14" letter-spacing="2">RED └•TEAM•┐ lab™ / FOUR ENGINEERING NODES</text>
+<path d="M32 58H1248" stroke="#202126"/>
+<rect x="32" y="80" width="292" height="150" rx="4" fill="#202126"/>
+<path d="M48 99H80" stroke="#a91d32" stroke-width="3"/>
+<text x="48" y="132" font-size="28" font-weight="700">RIG</text>
+<text x="48" y="158" font-size="14" fill="#f4f1ec">SYSTEM</text>
+<text x="48" y="188" font-size="12" fill="#f4f1ec">Acer Aspire E1-570G</text>
+<text x="48" y="208" font-size="12" fill="#f4f1ec">Debian 13</text>
+<rect x="340" y="80" width="292" height="150" rx="4" fill="#202126"/>
+<path d="M356 99H388" stroke="#a91d32" stroke-width="3"/>
+<text x="356" y="132" font-size="28" font-weight="700">KAI</text>
+<text x="356" y="158" font-size="14" fill="#f4f1ec">FIELD</text>
+<text x="356" y="188" font-size="12" fill="#f4f1ec">Xiaomi 23053RN02Y</text>
+<text x="356" y="208" font-size="12" fill="#f4f1ec">Termux / Ubuntu / Claude Code</text>
+<rect x="648" y="80" width="292" height="150" rx="4" fill="#202126"/>
+<path d="M664 99H696" stroke="#a91d32" stroke-width="3"/>
+<text x="664" y="132" font-size="28" font-weight="700">NOVA</text>
+<text x="664" y="158" font-size="14" fill="#f4f1ec">TOOLING</text>
+<text x="664" y="188" font-size="12" fill="#f4f1ec">Motorola Edge 2022</text>
+<text x="664" y="208" font-size="12" fill="#f4f1ec">native Termux / Codex CLI</text>
+<rect x="956" y="80" width="292" height="150" rx="4" fill="#202126"/>
+<path d="M972 99H1004" stroke="#a91d32" stroke-width="3"/>
+<text x="972" y="132" font-size="28" font-weight="700">ORBIT</text>
+<text x="972" y="158" font-size="14" fill="#f4f1ec">CLOUD / INTEGRATION</text>
+<text x="972" y="188" font-size="12" fill="#f4f1ec">Codex Cloud</text>
+<text x="972" y="208" font-size="12" fill="#f4f1ec">ChatGPT Work</text>
+<path d="M178 230V251H1102V230 M486 230V251 M794 230V251 M640 251V272" fill="none" stroke="#a91d32"/>
+<text x="640" y="294" text-anchor="middle" font-size="13">Xnode-sh/RED-TEAM-LAB / SHARED REPOSITORY</text>
+</g></svg>

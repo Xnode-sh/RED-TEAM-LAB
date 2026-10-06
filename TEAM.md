@@ -9,6 +9,14 @@
 | NOVA | Mobile Automation & Tooling Engineer | Motorola Edge 2022, Termux, Codex, code, tooling, automation | `nova/<task>` |
 | ORBIT | Cloud Operations & Integration Engineer | Codex Cloud / ChatGPT Work, GitHub coordination, CI/CD, интеграция | `orbit/<task>` |
 
+## Визуальная архитектура
+
+RIG — **SYSTEM** · KAI — **FIELD** · NOVA — **TOOLING** · ORBIT — **CLOUD / INTEGRATION**.
+
+![Архитектура четырёх инженерных узлов](assets/team-architecture.svg)
+
+ORBIT координирует общую облачную работу, GitHub, CI/CD и интеграцию результатов через review; ответственность за системную, полевую и инструментальную работу сохраняется за соответствующими узлами.
+
 ## Дома и выбор идентичности
 
 - RIG — Acer Aspire E1-570G / Debian 13.
