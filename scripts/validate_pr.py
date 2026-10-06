@@ -120,11 +120,80 @@ def check_startup():
     return bad
 
 
+def check_abs_links():
+    """Внутренние Markdown-ссылки должны быть относительными (без ведущего '/')."""
+    bad = []
+    for path in walk(exts={".md"}):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                for ln, line in enumerate(fh, 1):
+                    for m in LINK_RE.finditer(line):
+                        target = m.group(1).strip()
+                        if target.startswith("/"):
+                            bad.append(f"{rel(path)}:{ln} -> {target}")
+        except UnicodeDecodeError:
+            continue
+    return bad
+
+
+def check_duplicate_headings():
+    """Повтор одинакового заголовка внутри одного Markdown-файла."""
+    bad = []
+    for path in walk(exts={".md"}):
+        seen, dup = set(), set()
+        try:
+            with open(path, encoding="utf-8") as fh:
+                for line in fh:
+                    m = re.match(r"^#{1,6}\s+(.+?)\s*$", line)
+                    if not m:
+                        continue
+                    key = m.group(1).strip().lower()
+                    if key in seen:
+                        dup.add(m.group(1).strip())
+                    seen.add(key)
+        except UnicodeDecodeError:
+            continue
+        for d in sorted(dup):
+            bad.append(f"{rel(path)}: повтор заголовка «{d}»")
+    return bad
+
+
+def advisory_markdown_lint():
+    """Совещательный markdown lint (не блокирует): табы, хвостовые пробелы, финальный перевод строки."""
+    warn = []
+    for path in walk(exts={".md"}):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                text = fh.read()
+        except UnicodeDecodeError:
+            continue
+        for ln, line in enumerate(text.splitlines(), 1):
+            if "\t" in line:
+                warn.append(f"{rel(path)}:{ln} таб")
+            if line.rstrip("\n") != line.rstrip():
+                warn.append(f"{rel(path)}:{ln} хвостовой пробел")
+        if text and not text.endswith("\n"):
+            warn.append(f"{rel(path)} нет финального перевода строки")
+    return warn
+
+
+def git_diff_summary():
+    import subprocess
+    try:
+        out = subprocess.run(["git", "diff", "--stat", "HEAD"], cwd=ROOT,
+                             capture_output=True, text=True, timeout=30)
+        return (out.stdout or out.stderr or "").strip()
+    except Exception as exc:  # noqa: BLE001
+        return f"(git diff недоступен: {exc})"
+
+
 def main():
     checks = [
         ("merge-конфликты", check_conflicts),
         ("секреты", check_secrets),
-        ("ссылки", check_links),
+        ("broken links", check_links),
+        ("relative links", check_abs_links),
+        ("duplicate headings", check_duplicate_headings),
         ("роли", check_roles),
         ("протокол старта", check_startup),
     ]
@@ -138,10 +207,23 @@ def main():
                 print(f"       - {item}")
         else:
             print(f"[ OK ] {title}")
+
+    # Совещательные проверки (markdown lint) — не влияют на код возврата.
+    warn = advisory_markdown_lint()
+    if warn:
+        print(f"[WARN] markdown lint: {len(warn)} (совещательно)")
+        for item in warn[:20]:
+            print(f"       - {item}")
+    else:
+        print("[ OK ] markdown lint")
+
+    print("\n--- git diff summary (HEAD) ---")
+    print(git_diff_summary() or "(нет изменений относительно HEAD)")
+
     if failed:
         print(f"\nВалидация не пройдена: проблемных проверок — {failed}.")
         return 1
-    print("\nВалидация пройдена: все проверки OK.")
+    print("\nВалидация пройдена: блокирующие проверки OK.")
     return 0
 
 

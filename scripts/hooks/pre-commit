@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# RED └•TEAM•┐ lab™ — pre-commit hook.
+# Автоматически запускает валидатор перед каждым commit (Этап 6 AUTO VALIDATION).
+#
+# Установка (один раз):
+#   git config core.hooksPath scripts/hooks
+# либо:
+#   ln -sf ../../scripts/hooks/pre-commit .git/hooks/pre-commit
+#
+# Блокирует commit, если блокирующие проверки не пройдены.
+
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+echo "[pre-commit] запуск валидатора…"
+if python3 "$repo_root/scripts/validate_pr.py"; then
+  echo "[pre-commit] проверки пройдены."
+  exit 0
+else
+  echo "[pre-commit] проверки НЕ пройдены — commit остановлен." >&2
+  exit 1
+fi
