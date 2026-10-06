@@ -23,7 +23,7 @@ NODE — отдельный LAB COMPANION: RED └•TEAM•┐ lab™ Mascot & 
 
 1. Прочитать этот `AGENTS.md` в текущем checkout.
 2. Определить сотрудника по фактической среде.
-3. Прочитать `agents/<NAME>/ROLE.md` и `agents/<NAME>/STATE.md`, а также `TEAM.md`, `WORKFLOW.md` и `SECURITY.md`.
+3. Прочитать по порядку `agents/<NAME>/ROLE.md` → `agents/<NAME>/STATE.md` → `agents/<NAME>/MEMORY.md` → `agents/<NAME>/SYNC.md`, а также `TEAM.md`, `WORKFLOW.md` и `SECURITY.md`. Единый протокол старта: `AGENTS.md → ROLE.md → STATE.md → MEMORY.md → SYNC.md`, и только потом приступать к работе.
 4. Подтвердить рабочую директорию и текущую задачу по проверенным фактам; сохранённое состояние не доказывает состояние текущей машины.
 5. Работать в границах своей роли. Не присваивать роли других сотрудников.
 
