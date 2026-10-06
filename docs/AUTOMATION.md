@@ -18,6 +18,11 @@
 | 6 | `python3 scripts/validate_pr.py` | AUTO VALIDATION: конфликты, секреты, broken/relative links, duplicate headings, роли, протокол старта + markdown lint (совещательно) и git diff summary |
 | — | `python3 scripts/agent.py status` | Сводка по всем агентам (миссия/последняя задача/следующий шаг/блокеры/обновлено) из их SYNC.md |
 | — | `python3 scripts/agent.py tasks [--mine NAME] [--owner NAME] [--status S]` | Очередь задач из TASKS.md с фильтрами |
+| — | `python3 scripts/agent.py task add --id T-xxx --title "…" [--owner N] [--status S] [--pr …]` | Добавить задачу в очередь TASKS.md |
+| — | `python3 scripts/agent.py task set --id T-xxx [--status S] [--pr …]` | Обновить статус/PR задачи в очереди |
+
+`checkpoint` теперь обновляет и машинный блок `STATE.md` (`STATE:BEGIN..STATE:END`),
+не трогая прозу: поля `--status` и `--active` пишутся в этот блок автоматически.
 
 Автозапуск валидатора перед commit — хук [scripts/hooks/pre-commit](../scripts/hooks/pre-commit):
 `git config core.hooksPath scripts/hooks`.
@@ -60,8 +65,8 @@ checkpoint ──> SYNC.md (+ MEMORY.md)   [STATE.md — вручную, фор�
 
 ## Предложения по следующему этапу
 
-1. Привести `STATE.md` к единому машинно-читаемому разделу, чтобы автоматизировать Этап 3 полностью.
-2. ~~Включить CI-workflow `validate.yml`~~ — ✅ сделано (PR #10).
-3. ~~Машинно-читаемый индекс очереди задач~~ — ✅ частично: `agent.py tasks` фильтрует очередь (`--mine/--owner/--status`).
-4. ~~Команда `agent.py status`~~ — ✅ сделано.
-5. Автогенерация записи в TASKS.md при открытии PR (через хук/CLI).
+1. ~~Машинно-читаемый раздел `STATE.md`~~ — ✅ блок `STATE:BEGIN..STATE:END`, пишется `agent.py checkpoint`.
+2. ~~CI-workflow `validate.yml`~~ — ✅ (PR #10).
+3. ~~Индекс очереди задач~~ — ✅ `agent.py tasks` (фильтры) и `agent.py task add/set` (ведение).
+4. ~~Команда `agent.py status`~~ — ✅.
+5. Автогенерация записи в TASKS.md при открытии PR — частично: есть `agent.py task add` (ручной/хук); остаётся привязка к событию PR.

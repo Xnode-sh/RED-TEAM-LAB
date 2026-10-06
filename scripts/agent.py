@@ -221,6 +221,36 @@ def _append_memory(name: str, note: str) -> bool:
     return True
 
 
+def _update_state(name: str, args) -> list[str]:
+    """Обновить машинный блок STATE:BEGIN..STATE:END, не трогая прозу."""
+    path = os.path.join(ROOT, "agents", name, "STATE.md")
+    text = read_text(path)
+    if text is None:
+        return ["STATE.md отсутствует"]
+    lines = text.splitlines()
+    try:
+        b = next(i for i, l in enumerate(lines) if "STATE:BEGIN" in l)
+        e = next(i for i, l in enumerate(lines) if "STATE:END" in l)
+    except StopIteration:
+        return ["нет машинного блока STATE:BEGIN/END"]
+    repl = {
+        "Статус (машинно):": args.status,
+        "Активная задача (машинно):": args.active,
+        "Следующий шаг (машинно):": args.next,
+        "Обновлено (машинно):": now_utc(),
+    }
+    changed = []
+    for i in range(b + 1, e):
+        for key, val in repl.items():
+            if val and lines[i].lstrip().startswith(f"- {key}"):
+                lines[i] = f"- {key} {val}"
+                changed.append(key.rstrip(" :"))
+    if changed:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(lines) + ("\n" if text.endswith("\n") else ""))
+    return changed
+
+
 def cmd_checkpoint(args) -> int:
     name = (args.name or "").upper() or detect_identity()[0]
     if not name:
@@ -234,7 +264,8 @@ def cmd_checkpoint(args) -> int:
         print(f"MEMORY.md: {'добавлена запись' if ok else 'ОТСУТСТВУЕТ — пропуск'}")
     else:
         print("MEMORY.md: нет новых знаний (--memory не задан)")
-    print("STATE.md: обновите вручную по проверенным фактам (формат варьируется).")
+    st_changed = _update_state(name, args)
+    print(f"STATE.md (машинный блок): {', '.join(st_changed) if st_changed else 'без изменений'}")
     return 0
 
 
@@ -438,6 +469,62 @@ def cmd_tasks(args) -> int:
     return 0
 
 
+def _tasks_table_bounds(lines):
+    """Индексы (header, last_row) таблицы очереди в TASKS.md."""
+    h = None
+    for i, l in enumerate(lines):
+        if l.lstrip().startswith("|") and "ID" in l and "Задача" in l:
+            h = i
+            break
+    if h is None:
+        return None, None
+    j = h + 2
+    last = j - 1
+    while j < len(lines) and lines[j].lstrip().startswith("|"):
+        last = j
+        j += 1
+    return h, last
+
+
+def cmd_task(args) -> int:
+    path = os.path.join(ROOT, "docs", "TASKS.md")
+    text = read_text(path)
+    if text is None:
+        print("docs/TASKS.md отсутствует.")
+        return 1
+    lines = text.splitlines()
+    h, last = _tasks_table_bounds(lines)
+    if h is None:
+        print("Таблица очереди не найдена в TASKS.md.")
+        return 1
+    today = datetime.date.today().isoformat()
+    if args.action == "add":
+        owner = (args.owner or detect_identity()[0] or "—").upper()
+        row = f"| {args.id} | {args.title} | {owner} | {args.status} | — | {today} | {args.pr or '—'} |"
+        lines.insert(last + 1, row)
+        print(f"TASKS.md: добавлена {args.id} [{args.status}] {owner}")
+    else:  # set
+        found = False
+        for i in range(h + 2, last + 1):
+            cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+            if len(cells) == 7 and cells[0] == args.id:
+                if args.status:
+                    cells[3] = args.status
+                if args.pr:
+                    cells[6] = args.pr
+                cells[5] = today
+                lines[i] = "| " + " | ".join(cells) + " |"
+                found = True
+                print(f"TASKS.md: {args.id} → статус={cells[3]} pr={cells[6]}")
+                break
+        if not found:
+            print(f"TASKS.md: задача {args.id} не найдена.")
+            return 1
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + ("\n" if text.endswith("\n") else ""))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Agent automation engine — RED TEAM lab")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -455,6 +542,8 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--commit", default="")
     c.add_argument("--branch", default="")
     c.add_argument("--pr", default="")
+    c.add_argument("--status", default="", help="STATE: статус (машинно)")
+    c.add_argument("--active", default="", help="STATE: активная задача (машинно)")
     c.set_defaults(fn=cmd_checkpoint)
 
     h = sub.add_parser("handoff", help="HANDOFF: сформировать запись")
@@ -490,6 +579,15 @@ def build_parser() -> argparse.ArgumentParser:
     tk.add_argument("--owner", help="фильтр по владельцу")
     tk.add_argument("--status", help="фильтр по статусу (pending/active/blocked/done)")
     tk.set_defaults(fn=cmd_tasks)
+
+    ta = sub.add_parser("task", help="вести очередь TASKS.md (add/set)")
+    ta.add_argument("action", choices=["add", "set"])
+    ta.add_argument("--id", required=True)
+    ta.add_argument("--title", default="")
+    ta.add_argument("--owner", default="")
+    ta.add_argument("--status", default="pending")
+    ta.add_argument("--pr", default="")
+    ta.set_defaults(fn=cmd_task)
     return p
 
 
