@@ -382,6 +382,62 @@ def cmd_unlock(args) -> int:
 
 # --------------------------------------------------------------- cli ---------
 
+def cmd_status(args) -> int:
+    """Сводка по всем агентам из их SYNC.md."""
+    print("=== LAB STATUS ===")
+    any_found = False
+    for a in AGENTS:
+        sync = parse_sync_table(read_text(os.path.join(ROOT, "agents", a, "SYNC.md")) or "")
+        if not sync:
+            print(f"\n[{a}] SYNC.md отсутствует или пуст")
+            continue
+        any_found = True
+        print(f"\n[{a}]")
+        print(f"  MISSION:   {sync.get('Текущая миссия', '—')}")
+        print(f"  LAST:      {sync.get('Последняя завершённая задача', '—')}")
+        print(f"  NEXT:      {sync.get('Следующий шаг', '—')}")
+        print(f"  BLOCKERS:  {sync.get('Известные блокеры', '—')}")
+        print(f"  UPDATED:   {sync.get('Время последнего обновления', '—')}")
+    return 0 if any_found else 1
+
+
+def _parse_tasks(text: str):
+    """Строки очереди TASKS.md -> список dict."""
+    cols = ["ID", "Задача", "Владелец", "Статус", "Передана кому", "Обновлено", "PR"]
+    rows = []
+    for line in text.splitlines():
+        m = re.match(r"^\|(.+)\|\s*$", line)
+        if not m:
+            continue
+        cells = [c.strip() for c in m.group(1).split("|")]
+        if len(cells) != len(cols):
+            continue
+        if cells[0] in ("ID", "") or set(cells[0]) <= set("-: "):
+            continue
+        rows.append(dict(zip(cols, cells)))
+    return rows
+
+
+def cmd_tasks(args) -> int:
+    text = read_text(os.path.join(ROOT, "docs", "TASKS.md"))
+    if text is None:
+        print("docs/TASKS.md отсутствует.")
+        return 1
+    rows = _parse_tasks(text)
+    if args.mine:
+        rows = [r for r in rows if r["Владелец"].upper() == args.mine.upper()]
+    if args.owner:
+        rows = [r for r in rows if r["Владелец"].upper() == args.owner.upper()]
+    if args.status:
+        rows = [r for r in rows if r["Статус"].lower() == args.status.lower()]
+    if not rows:
+        print("Задач по фильтру нет.")
+        return 0
+    for r in rows:
+        print(f"{r['ID']}  [{r['Статус']}]  {r['Владелец']}  — {r['Задача']}  (PR {r['PR']})")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Agent automation engine — RED TEAM lab")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -425,6 +481,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     ls = sub.add_parser("locks", help="показать активные блокировки")
     ls.set_defaults(fn=cmd_locks)
+
+    st = sub.add_parser("status", help="сводка по всем агентам из SYNC.md")
+    st.set_defaults(fn=cmd_status)
+
+    tk = sub.add_parser("tasks", help="очередь задач из TASKS.md с фильтрами")
+    tk.add_argument("--mine", help="задачи указанного агента")
+    tk.add_argument("--owner", help="фильтр по владельцу")
+    tk.add_argument("--status", help="фильтр по статусу (pending/active/blocked/done)")
+    tk.set_defaults(fn=cmd_tasks)
     return p
 
 

@@ -16,6 +16,8 @@
 | 4 | `python3 scripts/agent.py handoff --to NAME --task T-xxx --next "…" [--append]` | HANDOFF: печатает запись стандартного формата и (с `--append`) добавляет строку в TASKS.md |
 | 5 | `python3 scripts/agent.py lock <path>` / `unlock <path>` / `locks` | FILE LOCK: реестр блокировок в LOCKS.md; при чужой блокировке печатает `FILE LOCKED` и возвращает код 2 |
 | 6 | `python3 scripts/validate_pr.py` | AUTO VALIDATION: конфликты, секреты, broken/relative links, duplicate headings, роли, протокол старта + markdown lint (совещательно) и git diff summary |
+| — | `python3 scripts/agent.py status` | Сводка по всем агентам (миссия/последняя задача/следующий шаг/блокеры/обновлено) из их SYNC.md |
+| — | `python3 scripts/agent.py tasks [--mine NAME] [--owner NAME] [--status S]` | Очередь задач из TASKS.md с фильтрами |
 
 Автозапуск валидатора перед commit — хук [scripts/hooks/pre-commit](../scripts/hooks/pre-commit):
 `git config core.hooksPath scripts/hooks`.
@@ -59,7 +61,7 @@ checkpoint ──> SYNC.md (+ MEMORY.md)   [STATE.md — вручную, фор�
 ## Предложения по следующему этапу
 
 1. Привести `STATE.md` к единому машинно-читаемому разделу, чтобы автоматизировать Этап 3 полностью.
-2. Включить CI-workflow `validate.yml` (нужен OAuth scope `workflow`).
-3. Машинно-читаемый индекс очереди задач (например, фронт-маттер) для выборки «мои/ожидающие/завершённые» без ручного чтения таблицы.
-4. Команда `agent.py status` — сводка по всем агентам из их SYNC.md.
+2. ~~Включить CI-workflow `validate.yml`~~ — ✅ сделано (PR #10).
+3. ~~Машинно-читаемый индекс очереди задач~~ — ✅ частично: `agent.py tasks` фильтрует очередь (`--mine/--owner/--status`).
+4. ~~Команда `agent.py status`~~ — ✅ сделано.
 5. Автогенерация записи в TASKS.md при открытии PR (через хук/CLI).
