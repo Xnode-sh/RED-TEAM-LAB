@@ -6,7 +6,7 @@
 
 | Поле | Значение |
 | --- | --- |
-| Текущая миссия | Сохранить важные итоги сессии по прямому запросу оператора |
+| Текущая миссия | Важные итоги сессии сохранены по прямому запросу оператора; новая задача не назначена |
 | Последняя завершённая задача | Змейка в разделе «Активность» профиля Xnode-sh/Xnode-sh заменена анимированным NODE |
 | Артефакт | [assets/node-activity.svg](https://github.com/Xnode-sh/Xnode-sh/blob/main/assets/node-activity.svg) — исходный PNG, 160 независимо подсвечиваемых блоков, дыхание NODE, лёгкое движение хвоста и красная пульсация |
 | Подтверждённая интеграция | [PR профиля #6](https://github.com/Xnode-sh/Xnode-sh/pull/6) merged; commit `6ba6dbe4f7e500d2fae51234e1ffd7ac78cc0af7`; README в main проверен |
@@ -19,6 +19,6 @@
 | Время последнего обновления | 2026-10-07 UTC |
 | Branch записи | `rig/session-sync-2026-10-07` |
 | Commit SHA записи | Точный commit этой версии доступен в истории SYNC.md; commit завершённой работы указан выше |
-| PR записи | См. PR ветки `rig/session-sync-2026-10-07` в Xnode-sh/RED-TEAM-LAB |
+| PR записи | [Штаб #15](https://github.com/Xnode-sh/RED-TEAM-LAB/pull/15) |
 
 Профиль `Xnode-sh/Xnode-sh`, сайт `Xnode-sh/Xnode-sh.github.io` и штаб `Xnode-sh/RED-TEAM-LAB` — отдельные репозитории. Подробные факты, ограничения и расхождение инструкций о среде зафиксированы в [MEMORY.md](MEMORY.md); роли не изменялись.
