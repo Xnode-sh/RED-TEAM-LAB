@@ -1,5 +1,7 @@
 <p align="center"><img src="assets/rig-banner.svg" width="1280" alt="XNODE — RED └•TEAM•┐ lab™"></p>
 
+<p align="center"><img src="assets/neural-cognition.svg" width="1280" alt="NEURAL ACTIVITY — лог мышления ИИ по кластерам: reasoning · memory · planning"></p>
+
 [Штаб лаборатории](https://github.com/Xnode-sh/RED-TEAM-LAB) · [Профиль XNODE](https://github.com/Xnode-sh)
 
 # RED └•TEAM•┐ lab™
