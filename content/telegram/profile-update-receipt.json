@@ -1,0 +1,22 @@
+[
+  {
+    "method": "setChatDescription",
+    "ok": false,
+    "description": "Bad Request: chat description is not modified"
+  },
+  {
+    "method": "setMyDescription",
+    "ok": true,
+    "description": null
+  },
+  {
+    "method": "setMyShortDescription",
+    "ok": true,
+    "description": null
+  },
+  {
+    "method": "editMessageCaption",
+    "ok": true,
+    "description": null
+  }
+]

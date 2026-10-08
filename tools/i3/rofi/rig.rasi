@@ -1,0 +1,32 @@
+configuration {
+  modi: "drun,run,window";
+  show-icons: true;
+  font: "DejaVu Sans 11";
+  display-drun: "APPS";
+  display-run: "RUN";
+  display-window: "WINDOWS";
+}
+* {
+  bg: #10131df2;
+  fg: #e4e8f1;
+  accent: #ff365f;
+  muted: #7e89a3;
+  background-color: transparent;
+  text-color: @fg;
+}
+window {
+  width: 540px;
+  background-color: @bg;
+  border: 2px;
+  border-color: @accent;
+  border-radius: 12px;
+}
+mainbox { padding: 20px; spacing: 14px; }
+inputbar { children: [prompt, entry]; spacing: 12px; }
+prompt { text-color: @accent; }
+entry { placeholder: "Launch something..."; placeholder-color: @muted; }
+listview { lines: 8; spacing: 5px; scrollbar: false; }
+element { padding: 10px; border-radius: 6px; spacing: 10px; }
+element selected.normal { background-color: @accent; text-color: #ffffff; }
+element-icon { size: 24px; }
+element-text { vertical-align: 0.5; }

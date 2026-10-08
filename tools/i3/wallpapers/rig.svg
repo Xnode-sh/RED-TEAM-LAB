@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+  <radialGradient id="glow"><stop stop-color="#28324d"/><stop offset="1" stop-color="#0b0e17"/></radialGradient>
+  <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#252d40" stroke-width="1"/></pattern>
+</defs>
+<rect width="1920" height="1080" fill="url(#glow)"/>
+<rect width="1920" height="1080" fill="url(#grid)" opacity=".35"/>
+<path d="M0 860H470L590 740H1020L1140 860H1920" stroke="#ff365f" opacity=".35" stroke-width="2" fill="none"/>
+<path d="M0 884H460L580 764H1010L1130 884H1920" stroke="#23dcc8" opacity=".15" stroke-width="2" fill="none"/>
+<rect x="148" y="390" width="5" height="172" rx="2" fill="#ff365f"/>
+<text x="180" y="435" font-family="DejaVu Sans Mono,monospace" font-size="16" letter-spacing="8" fill="#23dcc8">SYSTEM / FIELD / TOOLING / CLOUD</text>
+<text x="174" y="505" font-family="DejaVu Sans Mono,monospace" font-size="60" font-weight="bold" letter-spacing="4" fill="#e4e8f1">RED TEAM LAB</text>
+<text x="180" y="548" font-family="DejaVu Sans Mono,monospace" font-size="16" letter-spacing="4" fill="#7e89a3">BUILD. BREAK. UNDERSTAND.</text>
+<g fill="#ff365f" opacity=".8"><rect x="1550" y="437" width="14" height="14"/><rect x="1592" y="437" width="14" height="14"/><rect x="1564" y="451" width="28" height="14"/><rect x="1550" y="465" width="56" height="14"/><rect x="1536" y="479" width="14" height="28"/><rect x="1550" y="493" width="56" height="14"/><rect x="1606" y="479" width="14" height="28"/><rect x="1550" y="507" width="14" height="14"/><rect x="1592" y="507" width="14" height="14"/></g>
+<g fill="#0b0e17"><rect x="1550" y="479" width="14" height="14"/><rect x="1592" y="479" width="14" height="14"/></g>
+<text x="180" y="1000" font-family="DejaVu Sans Mono,monospace" font-size="12" letter-spacing="4" fill="#515d78">RIG / ACER / DEBIAN / i3</text>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "systemMessage": "Ты — технический помощник RED TEAM LAB. Отвечай по-русски, кратко и по делу, без нравоучений и лишних дисклеймеров. Помогай с Linux, Android, кодом и лабораторными исследованиями. Не выдумывай факты и выполненные действия; существенные риски обозначай конкретно.",
+  "theme": "dark",
+  "temperature": 0.2,
+  "top_p": 0.8,
+  "top_k": 20,
+  "min_p": 0,
+  "max_tokens": 512,
+  "titleGenerationUseLLM": false,
+  "showMessageStats": true,
+  "showSystemMessage": false,
+  "customJson": "{\"chat_template_kwargs\":{\"enable_thinking\":false}}"
+}
