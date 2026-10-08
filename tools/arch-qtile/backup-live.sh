@@ -2,8 +2,8 @@
 # Run from a Live system with Debian mounted read-only and an external backup disk.
 set -euo pipefail
 umask 077
-if [[ $# -ne 2 ]]; then
-    echo 'Usage: bash backup-live.sh /mnt/debian /mnt/backup' >&2
+if [[ $# -lt 2 || $# -gt 3 || ( $# -eq 3 && "$3" != --migration ) ]]; then
+    echo 'Usage: bash backup-live.sh /mnt/debian /mnt/backup [--migration]' >&2
     exit 2
 fi
 rig_source=$(realpath -- "$1")
@@ -30,17 +30,27 @@ for rig_disk in $rig_source_disks; do
     fi
 done
 command -v gpg >/dev/null
-rig_bytes=$(du -sx --block-size=1 "$rig_source" | awk '{print $1}')
+rig_scope=(.)
+rig_measure=("$rig_source")
+if [[ ${3:-} == --migration ]]; then
+    rig_scope=(./home/red-team-lab ./etc ./usr/local ./root)
+    rig_measure=("$rig_source/home/red-team-lab" "$rig_source/etc" "$rig_source/usr/local" "$rig_source/root")
+fi
+rig_bytes=$(du -sx --block-size=1 \
+    --exclude="$rig_source/home/red-team-lab/RED-TEAM-LAB/tools/arch-qtile/downloads" \
+    "${rig_measure[@]}" | awk '{sum+=$1} END{printf "%.0f\n",sum}')
 rig_free=$(df --output=avail -B1 "$rig_destination" | tail -n 1 | tr -d ' ')
 (( rig_free > rig_bytes + 1073741824 )) || { echo 'Not enough free space for uncompressed backup plus margin.' >&2; exit 1; }
 rig_directory="$rig_destination/rig-debian-$(date -u +%Y%m%dT%H%M%SZ)"
 mkdir -m 700 -- "$rig_directory"
 export GPG_TTY=$(tty)
 echo 'Choose an encryption passphrase in the local terminal; do not send it to chat.'
+printf '%s\n' "${rig_scope[@]}" > "$rig_directory/SCOPE.txt"
 tar --one-file-system --acls --xattrs --numeric-owner \
     --exclude='./proc/*' --exclude='./sys/*' --exclude='./dev/*' \
     --exclude='./run/*' --exclude='./tmp/*' --exclude='./mnt/*' --exclude='./media/*' \
-    -C "$rig_source" -cf - . | \
+    --exclude='./home/red-team-lab/RED-TEAM-LAB/tools/arch-qtile/downloads' \
+    -C "$rig_source" -cf - "${rig_scope[@]}" | \
     gpg --symmetric --cipher-algo AES256 --output "$rig_directory/debian-root.tar.gpg.partial"
 echo 'Verifying decryption and archive structure; enter the same passphrase if requested.'
 gpg --decrypt "$rig_directory/debian-root.tar.gpg.partial" | tar -tf - >/dev/null
