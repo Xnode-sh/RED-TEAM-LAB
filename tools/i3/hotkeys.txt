@@ -1,0 +1,56 @@
+RIG / ГОРЯЧИЕ КЛАВИШИ
+Super = клавиша Windows. Буквы указаны по английским позициям;
+сочетания работают в русской раскладке.
+
+ЯЗЫК
+Alt+Shift                    Переключить EN / RU (индикатор в Polybar)
+
+ЗАПУСК
+Super+Enter                  Терминал
+Super+Space или Super+D       Программы
+Super+Tab или Alt+Tab         Список окон
+Super+B / E / T               Браузер / файлы / Telegram
+Super+Shift+V                 Cava (открыть или сфокусировать)
+Super+Shift+I                 Системный обзор
+Super+Shift+A                 Локальный AI (Qwen)
+Super+F1                      Эта шпаргалка
+
+ОКНА
+Super+стрелки                 Перейти к окну
+Super+Shift+стрелки           Переместить окно
+Super+Ctrl+стрелки            Изменить размер на 20 px
+Super+Q или Super+Shift+Q     Закрыть текущее окно
+Super+F                       Полный экран
+Super+H / V                   Горизонтальный / вертикальный split
+Super+W / S                   Вкладки / стопка окон
+Super+Shift+Space             Плавающее / плиточное окно
+Super+Ctrl+Space              Фокус плавающих / плиточных окон
+Super+R                       Режим размера: стрелки или H/J/K/L
+Enter / Esc / Super+R         Выйти из режима размера
+Super+Backspace               Показать спрятанное окно
+Super+Shift+Backspace         Спрятать окно в scratchpad
+
+РАБОЧИЕ СТОЛЫ
+Super+1…9 / 0                 Стол 1…9 / 10
+Super+Shift+1…9 / 0           Перенести окно на стол 1…9 / 10
+Super+Esc                     Предыдущий стол
+
+ЗВУК И СНИМКИ
+Polybar: PNG                  ЛКМ — весь экран, ПКМ — область (PNG)
+Polybar: REC                  ЛКМ — старт/стоп, ПКМ — папка записей
+Super+M                       Выключить / включить звук
+Super+минус / плюс            Громкость −5% / +5%
+Super+Shift+M                 Микшер
+Print                         Снимок всего экрана
+Shift+Print / Super+Shift+S   Выбрать область
+Alt+Print                     Снимок текущего окна
+
+СЕАНС
+Super+L или Ctrl+Alt+L        Блокировка экрана
+Super+Shift+X                 Меню питания
+Ctrl+Alt+Delete               Меню питания
+Super+Shift+E                 Меню выхода / питания
+Super+Shift+C                 Перечитать конфиг
+Super+Shift+R                 Перезапустить i3, сохранив окна
+
+Закрытие окна может прервать программу. Сохраняй работу.

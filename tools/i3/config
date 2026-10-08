@@ -1,0 +1,130 @@
+# RED TEAM LAB — i3 / X11. Mod = Windows/Super.
+set $mod Mod4
+font pango:DejaVu Sans Mono 10
+set $rig ~/.config/i3
+exec_always --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
+gaps inner 9
+gaps outer 4
+smart_gaps on
+smart_borders on
+hide_edge_borders smart
+workspace_auto_back_and_forth yes
+floating_modifier $mod
+focus_follows_mouse no
+default_border pixel 2
+client.focused #ff365f #10131d #e4e8f1 #23dcc8 #ff365f
+client.focused_inactive #37415a #10131d #a0abc2 #37415a #37415a
+client.urgent #ff365f #ff365f #ffffff #ff365f #ff365f
+client.unfocused #252d40 #10131d #7e89a3 #252d40 #252d40
+client.background #10131d
+
+bindcode $mod+36 exec kitty --config ~/.config/kitty/rig.conf
+bindcode $mod+40 exec rofi -show drun -theme ~/.config/rofi/rig.rasi
+bindcode $mod+56 exec firefox-esr
+bindcode $mod+26 exec thunar
+bindcode $mod+28 exec /home/red-team-lab/RED-TEAM-LAB/tools/telegram-desktop/Telegram/Telegram
+bindcode $mod+24 kill
+bindcode $mod+Shift+24 kill
+bindcode $mod+113 focus left
+bindcode $mod+116 focus down
+bindcode $mod+111 focus up
+bindcode $mod+114 focus right
+bindcode $mod+Shift+113 move left
+bindcode $mod+Shift+116 move down
+bindcode $mod+Shift+111 move up
+bindcode $mod+Shift+114 move right
+bindcode $mod+43 split h
+bindcode $mod+55 split v
+bindcode $mod+41 fullscreen toggle
+bindcode $mod+39 layout stacking
+bindcode $mod+25 layout tabbed
+bindcode $mod+Shift+65 floating toggle
+bindcode $mod+65 exec ~/.config/i3/scripts/actions.sh apps
+bindcode $mod+Control+65 focus mode_toggle
+bindcode $mod+10 workspace number 1
+bindcode $mod+11 workspace number 2
+bindcode $mod+12 workspace number 3
+bindcode $mod+13 workspace number 4
+bindcode $mod+14 workspace number 5
+bindcode $mod+15 workspace number 6
+bindcode $mod+16 workspace number 7
+bindcode $mod+17 workspace number 8
+bindcode $mod+18 workspace number 9
+bindcode $mod+19 workspace number 10
+bindcode $mod+Shift+10 move container to workspace number 1
+bindcode $mod+Shift+11 move container to workspace number 2
+bindcode $mod+Shift+12 move container to workspace number 3
+bindcode $mod+Shift+13 move container to workspace number 4
+bindcode $mod+Shift+14 move container to workspace number 5
+bindcode $mod+Shift+15 move container to workspace number 6
+bindcode $mod+Shift+16 move container to workspace number 7
+bindcode $mod+Shift+17 move container to workspace number 8
+bindcode $mod+Shift+18 move container to workspace number 9
+bindcode $mod+Shift+19 move container to workspace number 10
+bindcode $mod+Shift+54 reload
+bindcode $mod+Shift+27 restart
+bindcode $mod+Shift+26 exec ~/.config/i3/scripts/actions.sh power
+bindcode $mod+46 exec light-locker-command --lock
+# Window picker, previous workspace, and a scratchpad shelf.
+bindcode $mod+23 exec ~/.config/i3/scripts/actions.sh windows
+bindcode Mod1+23 exec ~/.config/i3/scripts/actions.sh windows
+bindcode $mod+9 workspace back_and_forth
+bindcode $mod+22 scratchpad show
+bindcode $mod+Shift+22 move scratchpad
+# Screenshot bindings fire on release so modifiers do not interfere with selection.
+bindcode --release 107 exec ~/.config/i3/scripts/actions.sh screenshot-full
+bindcode --release Shift+107 exec ~/.config/i3/scripts/actions.sh screenshot-area
+bindcode --release Mod1+107 exec ~/.config/i3/scripts/actions.sh screenshot-window
+bindcode --release $mod+Shift+39 exec ~/.config/i3/scripts/actions.sh screenshot-area
+# Audio keys also work on keyboards without multimedia buttons.
+bindcode $mod+58 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindcode $mod+Shift+58 exec ~/.config/i3/scripts/actions.sh mixer
+bindcode $mod+20 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindcode $mod+21 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindcode $mod+Shift+53 exec ~/.config/i3/scripts/actions.sh power
+bindcode Control+Mod1+46 exec ~/.config/i3/scripts/actions.sh lock
+bindcode Control+Mod1+119 exec ~/.config/i3/scripts/actions.sh power
+bindcode $mod+67 exec ~/.config/i3/scripts/actions.sh help
+# Resize a little without entering a mode.
+bindcode $mod+Control+113 resize shrink width 20 px or 2 ppt
+bindcode $mod+Control+114 resize grow width 20 px or 2 ppt
+bindcode $mod+Control+111 resize shrink height 20 px or 2 ppt
+bindcode $mod+Control+116 resize grow height 20 px or 2 ppt
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindcode $mod+27 mode resize
+mode resize {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindcode 43 resize shrink width 10 px or 1 ppt
+    bindcode 44 resize grow height 10 px or 1 ppt
+    bindcode 45 resize shrink height 10 px or 1 ppt
+    bindcode 46 resize grow width 10 px or 1 ppt
+    bindcode $mod+27 mode default
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+
+# Retain existing network, lock, power and appearance helpers during transition.
+exec --no-startup-id nm-applet
+exec --no-startup-id light-locker
+exec --no-startup-id xfsettingsd
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/ukui-polkit/polkit-ukui-authentication-agent-1
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+
+# One floating visualizer, opened on demand.
+for_window [class="^rig-cava$"] floating enable, resize set 720 250, move position center
+for_window [class="^rig-help$"] floating enable, resize set 900 600, move position center
+for_window [window_role="pop-up"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+bindcode $mod+Shift+55 exec ~/.config/i3/scripts/actions.sh cava
+bindcode $mod+Shift+31 exec ~/.config/i3/scripts/actions.sh dashboard
+bindcode $mod+Shift+38 exec ~/.config/i3/scripts/actions.sh local-ai
+bindcode $mod+Shift+40 exec rofi -show window -theme ~/.config/rofi/rig.rasi
+exec_always --no-startup-id ~/.config/i3/scripts/session.sh

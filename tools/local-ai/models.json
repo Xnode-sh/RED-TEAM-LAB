@@ -1,0 +1,17 @@
+{
+  "general": {
+    "name": "Qwen3.5-4B-Q4_K_M",
+    "files": {
+      "Qwen3.5-4B-Q4_K_M.gguf": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4"
+    },
+    "source": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF"
+  },
+  "coder": {
+    "name": "Qwen2.5-Coder-7B-Instruct-Q4_K_M",
+    "files": {
+      "qwen2.5-coder-7b-instruct-q4_k_m-00001-of-00002.gguf": "89f120544682078148c5a86117de9af3a65c339111262f2d3ff01d80d48b14be",
+      "qwen2.5-coder-7b-instruct-q4_k_m-00002-of-00002.gguf": "0183b3c850cfa96c31082c3af0123115300d3f62798c4448fa8f57bd0eac05e0"
+    },
+    "source": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF"
+  }
+}

@@ -1,0 +1,76 @@
+# RED TEAM LAB — i3 / X11. Mod = Windows/Super.
+set $mod Mod4
+font pango:DejaVu Sans Mono 10
+floating_modifier $mod
+focus_follows_mouse no
+default_border pixel 2
+client.focused #b32832 #b32832 #ffffff #b32832 #b32832
+client.unfocused #303030 #202020 #aaaaaa #303030 #303030
+
+bindcode $mod+36 exec kitty
+bindcode $mod+40 exec dmenu_run
+bindcode $mod+56 exec firefox-esr
+bindcode $mod+26 exec thunar
+bindcode $mod+28 exec /home/red-team-lab/RED-TEAM-LAB/tools/telegram-desktop/Telegram/Telegram
+bindcode $mod+Shift+24 kill
+bindcode $mod+113 focus left
+bindcode $mod+116 focus down
+bindcode $mod+111 focus up
+bindcode $mod+114 focus right
+bindcode $mod+Shift+113 move left
+bindcode $mod+Shift+116 move down
+bindcode $mod+Shift+111 move up
+bindcode $mod+Shift+114 move right
+bindcode $mod+43 split h
+bindcode $mod+55 split v
+bindcode $mod+41 fullscreen toggle
+bindcode $mod+39 layout stacking
+bindcode $mod+25 layout tabbed
+bindcode $mod+Shift+65 floating toggle
+bindcode $mod+65 focus mode_toggle
+bindcode $mod+10 workspace number 1
+bindcode $mod+11 workspace number 2
+bindcode $mod+12 workspace number 3
+bindcode $mod+13 workspace number 4
+bindcode $mod+14 workspace number 5
+bindcode $mod+Shift+10 move container to workspace number 1
+bindcode $mod+Shift+11 move container to workspace number 2
+bindcode $mod+Shift+12 move container to workspace number 3
+bindcode $mod+Shift+13 move container to workspace number 4
+bindcode $mod+Shift+14 move container to workspace number 5
+bindcode $mod+Shift+54 reload
+bindcode $mod+Shift+27 restart
+bindcode $mod+Shift+26 exec i3-nagbar -t warning -m 'Exit i3? Save your work first.' -B 'Exit' 'i3-msg exit'
+bindcode $mod+46 exec light-locker-command --lock
+bindsym Print exec xfce4-screenshooter
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindcode $mod+27 mode resize
+mode resize {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode default
+    bindsym Escape mode default
+}
+
+# Retain existing network, lock, power and appearance helpers during transition.
+exec --no-startup-id nm-applet
+exec --no-startup-id light-locker
+exec --no-startup-id xfsettingsd
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/ukui-polkit/polkit-ukui-authentication-agent-1
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+
+bar {
+    status_command i3status
+    position bottom
+    colors {
+        background #171717
+        statusline #dddddd
+        focused_workspace #b32832 #b32832 #ffffff
+    }
+}

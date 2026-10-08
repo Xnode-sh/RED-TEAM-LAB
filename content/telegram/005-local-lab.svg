@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="1200" height="760" fill="#10141f"/><rect x="40" y="40" width="1120" height="680" rx="24" fill="#171e2d" stroke="#ff426a" stroke-width="2"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#e6edf5">
+<text x="80" y="110" font-size="24" fill="#ff426a">RED TEAM LAB · RIG / SYSTEM</text>
+<text x="80" y="178" font-size="44" font-weight="bold">СТАРЫЙ ACER. ЛОКАЛЬНЫЙ AI.</text>
+<text x="80" y="226" font-size="24" fill="#a2aec7">i5-3337U · 12 ГБ RAM · CPU · терминальный чат</text>
+<text x="80" y="302" font-size="27">Qwen3.5-4B</text><rect x="80" y="323" width="840" height="36" rx="7" fill="#252d40"/><rect x="80" y="323" width="490" height="36" rx="7" fill="#77849f"/><text x="960" y="352" font-size="30">7 / 12</text>
+<text x="80" y="424" font-size="27">Qwen2.5-Coder-7B</text><rect x="80" y="445" width="840" height="36" rx="7" fill="#252d40"/><rect x="80" y="445" width="630" height="36" rx="7" fill="#36e2ce"/><text x="960" y="474" font-size="30">9 / 12</text>
+<text x="80" y="552" font-size="27" fill="#f3c677">CODER: ≈1,7 токена/с · до 4,7 ГиБ RSS</text>
+<text x="80" y="615" font-size="23">2 задачи Python, 12 проверок. Обе модели ошибаются.</text>
+<text x="80" y="667" font-size="19" fill="#a2aec7">Замер RIG · 07.10.2026 · результат ограниченного теста</text>
+</g></svg>

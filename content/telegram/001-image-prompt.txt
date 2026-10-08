@@ -1,0 +1,3 @@
+Generated with built-in imagegen.
+
+Use case: illustration-story. Asset type: Telegram channel post cover for RED TEAM LAB. Create a polished editorial digital illustration of a modest Linux laboratory workbench: an older black laptop displaying abstract terminal lines with no readable commands, an Android phone beside it, a few connecting cables. Dark graphite setting, restrained red accent lighting, tactile realistic details, clear composition suitable for a small mobile screen. Text (verbatim): "RED TEAM LAB" as a clean readable small heading. No people, no hacker masks, no padlocks, no invented stats or claims, no sensitive data. This is clearly an illustration, not documentation of actual hardware. Landscape cover.

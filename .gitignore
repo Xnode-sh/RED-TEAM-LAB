@@ -42,3 +42,6 @@ __pycache__/
 Thumbs.db
 .coverage
 htmlcov/
+
+# Local Telegram Desktop distribution
+tools/telegram-desktop/
