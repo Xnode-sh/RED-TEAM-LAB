@@ -14,7 +14,11 @@ fi
 if [[ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]]; then
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
-kitty --config "$HOME/.config/kitty/rig.conf" &
+if [[ -f "$HOME/RED-TEAM-LAB/tools/arch-qtile/codex-startup.sh" ]]; then
+    bash "$HOME/RED-TEAM-LAB/tools/arch-qtile/codex-startup.sh" &
+else
+    kitty --config "$HOME/.config/kitty/rig.conf" &
+fi
 if command -v polybar >/dev/null && [[ -f "$HOME/.config/polybar/rig/launch.sh" ]]; then
     bash "$HOME/.config/polybar/rig/launch.sh" &
 fi
