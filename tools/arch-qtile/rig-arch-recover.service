@@ -1,0 +1,8 @@
+[Unit]
+Description=Return to Debian after a failed RIG Arch desktop verification
+RequiresMountsFor=/srv/rig-data
+
+[Service]
+Type=oneshot
+ExecStartPre=-/usr/bin/grub-editenv /srv/rig-data/boot/grub/grubenv unset saved_entry
+ExecStart=/usr/bin/systemctl --no-block reboot
