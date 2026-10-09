@@ -1,0 +1,44 @@
+RIG / SIGNAL DECK
+
+TOP PANEL
+RED / LAB: left click = apps; right click = windows
+Workspace selector: current number only; wheel switches; click opens workspace grid
+Overlapping windows icon: split, floating, fullscreen, balance, focus
+Terminal icon: Kitty     Robot icon: Codex     Folder icon: project
+Camera: save screenshot locally     Keyboard icon: this help
+Speaker: left = mute; right = audio devices; wheel = volume
+EN/RU: current layout; Alt+Shift switches layout
+Clock: click to show date
+Power icon: session menu with confirmation for exit/reboot/shutdown
+
+BOTTOM PANEL
+RIG or CPU/RAM: open htop
+CPU: actual usage and five-segment meter
+RAM: used memory excluding reclaimable cache
+Temperature: CPU sensors; amber >=70C, red >=85C
+Chip + SLEEP: NVIDIA runtime suspended, not a fabricated temperature
+ROOT/DATA: free disk space; DATA click = project
+WIFI/LAN: left = Wi-Fi controls; right = network status
+Arrows: real download/upload rate
+Sun: brightness percentage; wheel adjusts 5%
+UP: system uptime
+
+WINDOW KEYS
+Super+Enter: terminal
+Super+Space: applications
+Super+Arrows / HJKL: directional focus
+Super+Shift+Arrows / HJKL: move window
+Super+Ctrl+Arrows / HJKL: resize window
+Super+V: floating     Super+F: fullscreen     Super+Q: close
+Super+S: rotate split     Super+Shift+N: balance sizes
+Super+1..9,0: workspace 1..10
+Super+Shift+1..9,0: send window and follow
+Super+Ctrl+Shift+1..9,0: send window silently
+Super+Ctrl+R: reload Qtile
+
+WORKSTATION KEYS
+Super+B: Firefox
+Super+E: Thunar
+Super+Shift+S: Flameshot area capture
+Print: screenshot
+Super+Escape: lock screen

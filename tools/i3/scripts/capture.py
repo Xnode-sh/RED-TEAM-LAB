@@ -7,16 +7,20 @@ import os
 from pathlib import Path
 import re
 import signal
+import shutil
 import subprocess
 import sys
 import time
 
 ENGINE = Path.home()/'RED-TEAM-LAB/tools/i3/recorder-runtime'
-FFMPEG = ENGINE/'usr/bin/ffmpeg'
-FFPROBE = ENGINE/'usr/bin/ffprobe'
+USE_SYSTEM_FFMPEG = os.environ.get('RIG_CAPTURE_SYSTEM_FFMPEG') == '1' or not (ENGINE/'usr/bin/ffmpeg').exists()
+FFMPEG = Path(shutil.which('ffmpeg') or '/usr/bin/ffmpeg').resolve() if USE_SYSTEM_FFMPEG else ENGINE/'usr/bin/ffmpeg'
+FFPROBE = Path(shutil.which('ffprobe') or '/usr/bin/ffprobe').resolve() if USE_SYSTEM_FFMPEG else ENGINE/'usr/bin/ffprobe'
 RUNTIME = Path(os.environ.get('XDG_RUNTIME_DIR', '/tmp'))/f'rig-capture-{os.getuid()}'
 STATE = RUNTIME/'record.json'
-ENV = {**os.environ, 'LD_LIBRARY_PATH': str(ENGINE/'usr/lib/x86_64-linux-gnu')}
+ENV = dict(os.environ)
+if not USE_SYSTEM_FFMPEG:
+    ENV['LD_LIBRARY_PATH'] = str(ENGINE/'usr/lib/x86_64-linux-gnu')
 
 def notify(text):
     subprocess.run(['notify-send', '-t', '3500', 'RIG / CAPTURE', text], check=False)
@@ -111,13 +115,14 @@ def stop(data):
 
 if __name__ == '__main__':
     action = sys.argv[1] if len(sys.argv)>1 else 'status'
-    if action == 'status':
+    if action in ('status', 'status-plain'):
         data = state()
         if running(data):
             seconds = max(0,int(time.time()-data['started']))
-            print(f'%{{F#ff426a}} REC {seconds//60:02d}:{seconds%60:02d}%{{F-}}')
+            value = f'REC {seconds//60:02d}:{seconds%60:02d}'
+            print(value if action == 'status-plain' else f'%{{F#ff426a}} {value}%{{F-}}')
         else:
-            print('%{F#36e2ce} REC%{F-}')
+            print('REC OFF' if action == 'status-plain' else '%{F#36e2ce} REC%{F-}')
         sys.exit(0)
     try:
         RUNTIME.mkdir(mode=0o700, parents=True, exist_ok=True)

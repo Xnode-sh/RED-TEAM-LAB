@@ -3,6 +3,7 @@
 import fcntl
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import time
@@ -87,8 +88,9 @@ if __name__ == '__main__':
                 if probe.returncode == 0:
                     subprocess.run(['kitty', '@', '--to', socket, 'launch',
                                     '--type=tab', '--tab-title=LAB AI', *command], check=True)
-                    subprocess.run(['i3-msg', '[class="^rig-local-ai$"] focus'],
-                                   stdout=subprocess.DEVNULL, check=False)
+                    if shutil.which('i3-msg') and os.environ.get('I3SOCK'):
+                        subprocess.run(['i3-msg', '[class="^rig-local-ai$"] focus'],
+                                       stdout=subprocess.DEVNULL, check=False)
                 else:
                     session = RUNTIME/'kitty-session.conf'
                     session.write_text('new_tab LAB AI\nlaunch python3 ' + str(ROOT/'chat.py') + '\n')
